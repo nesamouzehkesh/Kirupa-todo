@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoItems from './TodoItems';
 
 class TodoList extends Component {
     constructor(props) {
@@ -6,7 +7,7 @@ class TodoList extends Component {
         this.addItem = this.addItem.bind(this);
 
         this.state = {
-            items: ['a', 'b']
+            items: []
         };
     }
 
@@ -18,14 +19,18 @@ class TodoList extends Component {
             value: this._inputElement.value
         }
 
-        console.log(item);
-
         this.setState({
             items: [...this.state.items, item]
         });
-
-        setTimeout(() => { console.log(this.state.items); }, 3000);
-        this._inputElement = "";
+        /**
+         * Or:
+         * this.setState((prevState) => {
+                return { 
+                    items: prevState.items.concat(newItem) 
+                };
+            });
+         */
+        this._inputElement.value = "";
     }
 
     render() {
@@ -37,6 +42,7 @@ class TodoList extends Component {
                         <button type="submit">add</button>
                     </form>
                 </div>
+                <TodoItems entries={this.state.items} />
             </div>
         );
     }
