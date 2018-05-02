@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem';
 
 const TodoItems = ({ entries }) => (
-    <ul>
+    <ul className="theList">
         {entries.map(entry => <TodoItem entry={entry} />)}
     </ul>
 )
