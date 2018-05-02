@@ -61,3 +61,29 @@ class TodoList extends Component {
 
 export default TodoList;
 ```
+
+### Animating the existance of an element in react:
+
+When it comes to animating the existence of an element, though, the traditional approaches we outlined run into some limitations. That is because the lifecycle of an element as it is about to be deleted from the DOM is entirely handled by React. We can definitely override some of the lifecycle methods to intercept an element deletion and interject our own animation logic, but that gets us a bit too far into the weeds. We don't want to deal with that right now.
+
+Fortunately, the React community has come up with a handful of lightweight animation libraries that make animating adding and deleting elements really easy. One such library is Flip Move. Among many things, this library makes animating the addition and removal of list elements really simple.
+
+This code did not work for FlipMove: 
+
+```
+import React from 'react';
+import TodoItem from './TodoItem';
+import FlipMove from 'react-flip-move';
+
+const TodoItems = ({ entries, deleteHandler }) => (
+    <ul className="theList">
+        <FlipMove duration={250} easing="ease-out">
+            {entries.map(entry => <TodoItem entry={entry} onDelete={deleteHandler} />)}
+        </FlipMove>
+    </ul>
+)
+
+export default TodoItems;
+
+
+```
