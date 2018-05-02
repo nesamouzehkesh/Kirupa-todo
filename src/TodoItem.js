@@ -3,7 +3,7 @@ import React from 'react';
 const TodoItem = ({ entry, onDelete }) => (
 
     <li key={entry.key}>
-        {entry.value}
+        <p>{entry.value}</p>
         <button onClick={() => onDelete(entry.key)}>Delete</button>
     </li>
 )
